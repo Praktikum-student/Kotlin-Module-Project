@@ -13,8 +13,8 @@ class Menu(private val title: String, private val items: MutableList<MenuItem>) 
             val input = Scanner(System.`in`).nextLine()
 
             when {
-                !isNumber(input) -> {
-                    println("Ошибка: введите число")
+                !isValidNumber(input) -> {
+                    println("Ошибка: введите целое число")
                 }
                 else -> {
                     val index = input.toInt()
@@ -31,7 +31,19 @@ class Menu(private val title: String, private val items: MutableList<MenuItem>) 
         }
     }
 
-    private fun isNumber(str: String): Boolean {
-        return str.matches(Regex("\\d+"))
+    private fun isValidNumber(str: String): Boolean {
+        // Проверяем, что строка не пустая и состоит только из цифр
+        if (str.isEmpty()) return false
+        // Проверяем, что все символы - цифры
+        for (c in str) {
+            if (!c.isDigit()) return false
+        }
+        // Проверяем, что число не выходит за пределы Int
+        try {
+            str.toInt()
+            return true
+        } catch (e: NumberFormatException) {
+            return false
+        }
     }
 }

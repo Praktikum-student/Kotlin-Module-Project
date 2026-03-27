@@ -5,7 +5,8 @@ class ArchiveMenu(private val archives: MutableList<Archive>) {
     fun show() {
         val menuItems = mutableListOf<MenuItem>()
 
-        menuItems.add(MenuItem(
+        menuItems.add(
+            MenuItem(
             name = "Создать архив",
             action = {
                 createArchive()
@@ -14,7 +15,8 @@ class ArchiveMenu(private val archives: MutableList<Archive>) {
         ))
 
         archives.forEach { archive ->
-            menuItems.add(MenuItem(
+            menuItems.add(
+                MenuItem(
                 name = archive.name,
                 action = {
                     NoteMenu(archive).show()
@@ -23,11 +25,13 @@ class ArchiveMenu(private val archives: MutableList<Archive>) {
             ))
         }
 
-        menuItems.add(MenuItem(
-            name = "Выход",
-            action = { },
-            isExit = true
-        ))
+        menuItems.add(
+            MenuItem(
+                name = "Выход",
+                action = { },
+                isExit = true
+            )
+        )
 
         Menu("Список архивов:", menuItems).show()
     }
@@ -45,7 +49,7 @@ class ArchiveMenu(private val archives: MutableList<Archive>) {
             if (input.isNotBlank()) {
                 return input
             }
-            println("Ошибка: название не может быть пустым. Попробуйте снова:")
+            println("Ошибка: поле не может быть пустым. Попробуйте снова:")
         }
     }
 }

@@ -5,7 +5,8 @@ class NoteMenu(private val archive: Archive) {
     fun show() {
         val menuItems = mutableListOf<MenuItem>()
 
-        menuItems.add(MenuItem(
+        menuItems.add(
+            MenuItem(
             name = "Создать заметку",
             action = {
                 createNote()
@@ -14,7 +15,8 @@ class NoteMenu(private val archive: Archive) {
         ))
 
         archive.notes.forEach { note ->
-            menuItems.add(MenuItem(
+            menuItems.add(
+                MenuItem(
                 name = note.name,
                 action = {
                     NoteView(note).show()
@@ -23,11 +25,13 @@ class NoteMenu(private val archive: Archive) {
             ))
         }
 
-        menuItems.add(MenuItem(
-            name = "Назад",
-            action = { },
-            isExit = true
-        ))
+        menuItems.add(
+            MenuItem(
+                name = "Назад",
+                action = { },
+                isExit = true
+            )
+        )
 
         Menu("Архив: ${archive.name}", menuItems).show()
     }
